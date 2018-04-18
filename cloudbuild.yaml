@@ -38,7 +38,7 @@ steps:
 
           cat kubernetes/deployments/hello_kubernetes.yml
 
-          kubectl apply -f --recursive kubernetes
+          kubectl apply --recursive -f kubernetes
 
 
             #          git add kubernetes/deployments/hello_kubernetes.yml
