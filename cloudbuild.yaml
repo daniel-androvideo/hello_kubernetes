@@ -36,7 +36,6 @@ steps:
             -p "$(cat patch.yaml)" \
             > kubernetes/deployments/hello_kubernetes.yml
 
-          kubectl apply -f
 
             #          git add kubernetes/deployments/hello_kubernetes.yml
             #          git commit -F- << EOF
