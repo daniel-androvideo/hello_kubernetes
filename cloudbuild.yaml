@@ -9,6 +9,7 @@ steps:
       env:
         - CLOUDSDK_COMPUTE_ZONE=${_CLOUDSDK_COMPUTE_ZONE}
         - CLOUDSDK_CONTAINER_CLUSTER=${_CLOUDSDK_CONTAINER_CLUSTER}
+        - KUBECONFIG=/kube/config
       args:
         - '-c'
         - |
@@ -38,3 +39,5 @@ steps:
             #          EOF
             #
             #          git push origin master
+images:
+  - gcr.io/${PROJECT_ID}/hello_kubernetes:${TAG_NAME}
