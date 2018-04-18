@@ -1,0 +1,19 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: hello_kubernetes
+spec:
+  selector:
+    matchLabels:
+      app: hello_kubernetes
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: hello_kubernetes
+    spec:
+      containers:
+      - name: hello_kubernetes
+        image: hello_kubernetes
+        ports:
+        - containerPort: 8080

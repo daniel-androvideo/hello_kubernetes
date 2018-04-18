@@ -6,6 +6,9 @@ steps:
         - 'gcr.io/${PROJECT_ID}/hello_kubernetes:${TAG_NAME}'
         - '.'
     - name: 'gcr.io/cloud-builders/kubectl'
+      env:
+        - CLOUDSDK_COMPUTE_ZONE=${_CLOUDSDK_COMPUTE_ZONE}
+        - CLOUDSDK_CONTAINER_CLUSTER=${_CLOUDSDK_CONTAINER_CLUSTER}
       args:
         - '-c'
         - |
