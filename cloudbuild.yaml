@@ -23,6 +23,8 @@ steps:
                     image: gcr.io/${PROJECT_ID}/hello_kubernetes:${TAG_NAME}
           EOF
 
+          cat patch.yaml
+
           CLUSTER=$$(gcloud config get-value container/cluster)
           PROJECT=$$(gcloud config get-value core/project)
           ZONE=$$(gcloud config get-value compute/zone)
