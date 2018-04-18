@@ -8,7 +8,7 @@ import (
 
 func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "<h1>Hello Kubernetes</h1>")
+		fmt.Fprintf(w, "<h1>Hello Container Registry Trigger</h1>")
 	})
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
