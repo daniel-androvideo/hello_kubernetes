@@ -36,6 +36,10 @@ steps:
             -p "$(cat patch.yaml)" \
             > kubernetes/deployments/hello_kubernetes.yml
 
+          cat kubernetes/deployments/hello_kubernetes.yml
+
+          kubectl apply -f --recursive kubernetes
+
 
             #          git add kubernetes/deployments/hello_kubernetes.yml
             #          git commit -F- << EOF
