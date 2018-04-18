@@ -23,6 +23,14 @@ steps:
                     image: gcr.io/${PROJECT_ID}/hello_kubernetes:${TAG_NAME}
           EOF
 
+          CLUSTER=$$(gcloud config get-value container/cluster)
+          PROJECT=$$(gcloud config get-value core/project)
+          ZONE=$$(gcloud config get-value compute/zone)
+
+          gcloud container clusters get-credentials "$${CLUSTER}" \
+            --project "$${PROJECT}" \
+            --zone "$${ZONE}"
+
           kubectl patch --local -o yaml \
             -f kubernetes/deployments/hello_kubernetes.yml \
             -p "$(cat patch.yaml)" \
