@@ -19,7 +19,7 @@ steps:
             template:
               spec:
                 containers:
-                  - name: hello_kubernetes
+                  - name: hello-kubernetes
                     image: gcr.io/${PROJECT_ID}/hello_kubernetes:${TAG_NAME}
           EOF
 
@@ -31,12 +31,12 @@ steps:
             --project "$${PROJECT}" \
             --zone "$${ZONE}"
 
-          kubectl patch -o yaml \
+          kubectl patch --local -o yaml \
             -f kubernetes/deployments/hello_kubernetes.yml \
             -p "$(cat patch.yaml)" \
             > kubernetes/deployments/hello_kubernetes.yml
 
-          cat kubernetes/deployments/hello_kubernetes.yml
+          kubectl apply -f
 
             #          git add kubernetes/deployments/hello_kubernetes.yml
             #          git commit -F- << EOF
