@@ -24,7 +24,7 @@ steps:
           EOF
 
           kubectl patch -o yaml \
-            -f kubernetes/deployments/hello_kubernetes.yml
+            -f kubernetes/deployments/hello_kubernetes.yml \
             -p "$(cat patch.yaml)" \
             > kubernetes/deployments/hello_kubernetes.yml
 
