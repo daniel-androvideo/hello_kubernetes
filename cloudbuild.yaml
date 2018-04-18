@@ -23,7 +23,7 @@ steps:
                     image: gcr.io/${PROJECT_ID}/hello_kubernetes:${TAG_NAME}
           EOF
 
-          kubectl patch --local -o yaml \
+          kubectl patch -o yaml \
             -f kubernetes/deployments/hello_kubernetes.yml
             -p "$(cat patch.yaml)" \
             > kubernetes/deployments/hello_kubernetes.yml
