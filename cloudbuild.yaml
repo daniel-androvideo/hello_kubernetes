@@ -14,17 +14,6 @@ steps:
       args:
         - '-c'
         - |
-          cat << EOF > patch.yaml
-          spec:
-            template:
-              spec:
-                containers:
-                - name: hello-kubernetes
-                  image: gcr.io/${PROJECT_ID}/hello_kubernetes:${TAG_NAME}
-          EOF
-
-          cat patch.yaml
-
           CLUSTER=$$(gcloud config get-value container/cluster)
           PROJECT=$$(gcloud config get-value core/project)
           ZONE=$$(gcloud config get-value compute/zone)
@@ -37,7 +26,7 @@ steps:
 
           kubectl patch --local -o yaml \
             -f kubernetes/deployments/hello_kubernetes.yml \
-            -p "$(cat patch.yaml)" \
+            -p '{"spec":{"template":{"spec":{"containers":{"name":"hello-kubernetes","image":"gcr.io/${PROJECT_ID}/hello_kubernetes:${TAG_NAME}"}}}}}' \
             > kubernetes/deployments/hello_kubernetes.yml
 
           cat kubernetes/deployments/hello_kubernetes.yml
