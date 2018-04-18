@@ -5,4 +5,33 @@ steps:
         - '-t'
         - 'gcr.io/${PROJECT_ID}/hello_kubernetes:${TAG_NAME}'
         - '.'
+    - name: 'gcr.io/cloud-builders/kubectl'
+      args:
+        - '-c'
+        - |
+          cat << EOF > patch.yaml
+          spec:
+            template:
+              spec:
+                containers:
+                  - name: hello_kubernetes
+                    image: gcr.io/${PROJECT_ID}/hello_kubernetes:${TAG_NAME}
+          EOF
 
+          kubectl patch --local -o yaml \
+            -f kubernetes/deployments/hello_kubernetes.yml
+            -p "$(cat patch.yaml)" \
+            > kubernetes/deployments/hello_kubernetes.yml
+
+          cat kubernetes/deployments/hello_kubernetes.yml
+
+            #          git add kubernetes/deployments/hello_kubernetes.yml
+            #          git commit -F- << EOF
+            #          Update the deployment image version
+            #
+            #          Update to gcr.io/${PROJECT_ID}/hello_kubernetes:${TAG_NAME}
+            #
+            #          Build ID: ${BUILD_ID}
+            #          EOF
+            #
+            #          git push origin master
