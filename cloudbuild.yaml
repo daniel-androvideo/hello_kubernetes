@@ -31,6 +31,8 @@ steps:
             --project "$${PROJECT}" \
             --zone "$${ZONE}"
 
+          cat kubernetes/deployments/hello_kubernetes.yml 
+
           kubectl patch --local -o yaml \
             -f kubernetes/deployments/hello_kubernetes.yml \
             -p "$(cat patch.yaml)" \
