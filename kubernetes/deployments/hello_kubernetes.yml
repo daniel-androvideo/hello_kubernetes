@@ -15,5 +15,3 @@ spec:
       containers:
       - name: hello-kubernetes
         image: gcr.io/example-201502/hello_kubernetes:0.0.10
-        ports:
-        - containerPort: 8080
