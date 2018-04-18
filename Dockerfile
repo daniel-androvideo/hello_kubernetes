@@ -5,4 +5,4 @@ WORKDIR $GOPATH/src/hello_kubernetes
 COPY . .
 RUN go build
 
-CMD ./k8s_example
+CMD ./hello_kubernetes
